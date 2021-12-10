@@ -1,0 +1,31 @@
+// COLORS -----------------------------------------------------------------------
+
+// Basic colors:
+$colorTransparent: transparent;
+$colorWhite: #FFFFFF;
+$colorMiddle: #292929;
+$colorBlack: #000000;
+$colorAlert: #e96f70;
+
+// theme colors
+$colorTheme1: $colorWhite;
+$colorTheme2: #f6f6f6;
+$colorTheme3: #b6b6b4;
+$colorTheme4: #83f3c6;
+
+
+// Backgrounds:
+$backgroundHeader: $colorTheme1;
+$bacKgroundSection: $colorTheme2;
+$backgroundFooter: $colorTheme1;
+
+
+// MEASUREMENTS -----------------------------------------------------------------------
+
+// Section heights:
+$heightHeader: 200px;
+$heightFooter: 50px;
+$heightSection: calc(100vh - #{$heightHeader} - #{$heightFooter});
+
+// Content width:
+$widthGeneralContent: 500px;

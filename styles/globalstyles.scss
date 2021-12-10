@@ -1,0 +1,41 @@
+// GLOBAL STYLE MODULES ------------------------------------------------------------------------
+
+@import 'variables';
+
+
+// GENERAL STYLES ---------------------------------------------------------------
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.app {
+  height: 100vh;
+  width: 100vw;
+
+  // elements
+  &__header {
+    height: $heightHeader;
+    background-color: $backgroundHeader;
+  }
+  &__main {
+    height: $heightSection;
+    background-color: $bacKgroundSection;
+  }
+  &__footer {
+    height: $heightFooter;
+    background-color: $backgroundFooter;
+  }
+  &__generalSizeBox {
+    margin: 0 auto;
+    height: inherit;
+    width: $widthGeneralContent;
+  }
+  &__contentBox {
+    height: inherit;
+    width: 100%;
+  }
+}
+  
