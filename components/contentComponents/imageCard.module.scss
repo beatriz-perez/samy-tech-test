@@ -1,0 +1,65 @@
+@import '../../styles/variables';
+
+.card {
+    position: relative;
+    margin: 10px 0;
+    border: 1px solid $colorTheme3;
+    height: 450px;
+    width: 300px;
+    background-color: $colorTheme1;
+    color: $colorMiddle;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(300px, 100px, 50px);
+    gap: 1px;
+    grid-template-areas: 
+    "image image"
+    "info info"
+    "likes reposts";
+    justify-items: stretch;
+    align-items: stretch;
+
+    &__priceBox {
+        position: absolute;
+        height: 80px;
+        width: 120px;
+        background-color: $colorTheme1;
+    }
+    &__image {
+        grid-area: image;
+    }
+    &__info {
+        grid-area: info;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        &--title {
+            font-family: $fontBigTitle;
+            text-transform: uppercase;
+            font-size: 1.5rem;
+        }
+        &--author {
+            font-family: $fontSpecial;
+            font-size: 1rem;
+        }
+        &--secondary {
+            color: $colorTheme3;
+        }
+    }
+    &__likesBox {
+        grid-area: likes;
+    }
+    &__repostsBox {
+        grid-area: reposts;
+    }
+    &__likesBox, &__repostsBox {
+        display: grid;
+        place-items: center;
+        font-family: $fontBigTitle;
+        color: $colorTheme3;
+    }
+    &__info, &__likesBox, &__repostsBox {
+        outline: 1px solid $colorTheme3;
+    }
+}

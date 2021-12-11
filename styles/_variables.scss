@@ -19,6 +19,13 @@ $backgroundHeader: $colorTheme1;
 $bacKgroundSection: $colorTheme2;
 $backgroundFooter: $colorTheme1;
 
+// FONTS -----------------------------------------------------------------------------
+
+$remSize: 16px;
+$lineHeight: 1.2;
+$fontText: Arial, Helvetica, sans-serif;
+$fontBigTitle: 'Open Sans', sans-serif;
+$fontSpecial: 'DM Serif Text', serif;
 
 // MEASUREMENTS -----------------------------------------------------------------------
 
@@ -28,4 +35,4 @@ $heightFooter: 50px;
 $heightSection: calc(100vh - #{$heightHeader} - #{$heightFooter});
 
 // Content width:
-$widthGeneralContent: 500px;
+$widthGeneralContent: 400px;

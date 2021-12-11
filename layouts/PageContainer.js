@@ -13,6 +13,7 @@ export default function PageContainer({children}) {
                 <link rel="icon" href="favicon.svg" />
                 <meta name="description" content="a pretty images scrolling app" />
                 <title>BP tech test</title>
+                <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&family=Open+Sans&display=swap" rel="stylesheet"/>
             </Head>
 
             <Header/>
