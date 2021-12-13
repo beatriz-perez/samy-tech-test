@@ -3,9 +3,8 @@ const baseUrl = 'http://localhost:3100/images'
 
 // COMPLETE URL + QUERY
 export const fetchURL = (search, page) => {
-    const completeUrl = search && page ? `${baseUrl}?search=${search}&page=${page}` : baseUrl
-    console.log(completeUrl);
-
+  const searchQuery = search ? search : ''
+  const completeUrl = `${baseUrl}?search=${searchQuery}&page=${page}`
   return completeUrl
 }
 

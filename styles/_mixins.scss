@@ -1,0 +1,10 @@
+// MEDIA SIZES
+@mixin mediaSize($size) {
+    @if $size == medium {
+      @media (min-width: 700px) { @content; }
+    } @else if $size == large {
+      @media (min-width: 1000px) { @content; }
+    } @else if $size == extraLarge {
+      @media (min-width: 1300px) { @content; }
+    } 
+}

@@ -1,4 +1,10 @@
 .footer {
     display: grid;
     place-items: center;
+    &__text {
+        font-size: 0.75rem;
+        &--link {
+            font-weight: bold;
+        }
+    }
 }

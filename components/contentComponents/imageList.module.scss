@@ -1,0 +1,45 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.listBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.list {
+    list-style-type: none;
+    height: auto;
+    width: auto;
+    margin: 30px auto;
+
+
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(1, auto);
+    gap: 10px;
+    grid-auto-flow: row;
+    @include mediaSize(medium){
+        grid-template-columns: repeat(2, 1fr);
+    }  
+    @include mediaSize(large){
+        grid-template-columns: repeat(3, 1fr);
+    }  
+    @include mediaSize(extraLarge){
+        grid-template-columns: repeat(4, 1fr);
+    }  
+}
+.text{
+    margin: 30px auto;
+    font-size: 0.8rem;
+}
+.button{
+    cursor: pointer;
+    height: 40px;
+    width: 300px;
+    margin-bottom: 30px;
+    border: 1px solid $colorTheme3;
+    border-radius: 20px;
+    background-color: $colorTheme1;
+}

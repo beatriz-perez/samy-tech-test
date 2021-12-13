@@ -30,9 +30,12 @@ $fontSpecial: 'DM Serif Text', serif;
 // MEASUREMENTS -----------------------------------------------------------------------
 
 // Section heights:
-$heightHeader: 200px;
-$heightFooter: 50px;
+$heightHeader: 160px;
+$heightFooter: 40px;
 $heightSection: calc(100vh - #{$heightHeader} - #{$heightFooter});
 
 // Content width:
-$widthGeneralContent: 400px;
+$widthGeneralContentMobile: 340px;
+$widthGeneralContentMedium: 650px;
+$widthGeneralContentLarge: 960px;
+$widthGeneralContentExtraLarge: 1270px;

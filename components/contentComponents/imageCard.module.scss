@@ -1,65 +1,144 @@
 @import '../../styles/variables';
+@import '../../styles/mixins';
 
 .card {
     position: relative;
-    margin: 10px 0;
+    margin: 0 auto;
     border: 1px solid $colorTheme3;
-    height: 450px;
+    height: auto;
     width: 300px;
     background-color: $colorTheme1;
-    color: $colorMiddle;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(300px, 100px, 50px);
+    grid-template-rows: 300px, 100px, 50px;
     gap: 1px;
     grid-template-areas: 
-    "image image"
-    "info info"
-    "likes reposts";
+        "image image"
+        "info info"
+        "likes reposts";
     justify-items: stretch;
     align-items: stretch;
+    @include mediaSize(medium){
+        grid-template-columns: 1fr;
+        grid-template-rows: 300px, 100px;
+        grid-template-areas: 
+        "image"
+        "info";
+    }  
 
+    &__text {
+        line-height: $lineHeight;
+        font-size: 1rem;
+        color: $colorMiddle;
+        &--title {
+            font-family: $fontBigTitle;
+            text-transform: uppercase;
+            font-size: 1.5rem;
+            width: 100%;
+            text-align: center;    
+        }
+        &--author {
+            font-family: $fontSpecial;
+        }
+        &--data {
+            font-family: $fontBigTitle;
+            color: $colorTheme3;
+            @include mediaSize(medium){
+                color: $colorTheme1;
+            }           
+        }
+        &--secondary {
+            color: $colorTheme3;
+        }
+        &--small {
+            font-size: 0.7rem;
+        }
+    }
     &__priceBox {
         position: absolute;
-        height: 80px;
-        width: 120px;
-        background-color: $colorTheme1;
+        z-index: 10;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+        border-top: 80px solid $colorTheme1;
+        border-right: 120px solid $colorTransparent;
+    }
+    &__priceTag {
+        position: absolute;
+        z-index: 20;
+        top: 0;
+        left: 0;
+        height: 40px;
+        width: 80px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
     }
     &__image {
         grid-area: image;
+        height:300px; //-----------------------------------------------
+        width:100%;
     }
-    &__info {
+    &__info, &__likesBox, &__repostsBox {
+        outline: 1px solid $colorTheme3;
+    }
+    &__infoBox {
+        height: 100px;
         grid-area: info;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        &--title {
-            font-family: $fontBigTitle;
-            text-transform: uppercase;
-            font-size: 1.5rem;
-        }
-        &--author {
-            font-family: $fontSpecial;
-            font-size: 1rem;
-        }
-        &--secondary {
-            color: $colorTheme3;
-        }
     }
+    &__likesBox, &__repostsBox {
+        height: 50px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        @include mediaSize(medium){
+            display: none;
+            height: 60px;
+            position: absolute;
+            right: 10px;
+            z-index: 40;
+            outline: none;
+        }      
+    }
+
     &__likesBox {
         grid-area: likes;
+        @include mediaSize(medium){
+            top: 10px;
+            flex-direction: column-reverse;
+        }      
     }
     &__repostsBox {
         grid-area: reposts;
+        @include mediaSize(medium){
+            top: 70px; // 10px de márgen de likeBox + 60px de altura de likeBox
+            flex-direction: column;
+        }      
     }
-    &__likesBox, &__repostsBox {
-        display: grid;
-        place-items: center;
-        font-family: $fontBigTitle;
-        color: $colorTheme3;
+    &__gradientBox {
+        width: 100%;
+        height: 300px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 30;
+        background: linear-gradient($colorBlack, $colorTransparent);
+        opacity: 0;
     }
-    &__info, &__likesBox, &__repostsBox {
-        outline: 1px solid $colorTheme3;
+
+    &:hover {
+        .card__likesBox, .card__repostsBox {
+            display: flex;
+        }
+        .card__gradientBox {
+            opacity: 0.5;
+        }
     }
 }

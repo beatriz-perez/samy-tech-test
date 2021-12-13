@@ -5,7 +5,7 @@ import Header from '../components/containerComponents/header';
 import Main from '../components/containerComponents/main'
 import Footer from '../components/containerComponents/footer';
 
-export default function PageContainer({children}) {
+export default function PageContainer({children, search, searchTask}) {
 
     return (
         <div className="app">
@@ -16,7 +16,7 @@ export default function PageContainer({children}) {
                 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&family=Open+Sans&display=swap" rel="stylesheet"/>
             </Head>
 
-            <Header/>
+            <Header search={search} searchTask={searchTask}/>
             <Main>
                 {children}
             </Main>

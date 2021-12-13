@@ -1,3 +1,5 @@
+// Modules:
+import { useState } from 'react'
 // Layout:
 import PageContainer from '../layouts/PageContainer'
 // Content components:
@@ -5,18 +7,30 @@ import ImageList from '../components/contentComponents/imageList'
 // Services:
 import { getImages } from '../services/getImages'
 
+export default function Home({initialListInfo}) {
 
-export default function Home({imagesListInfo}) {
+    // Search bar text
+    const [searchText, setSearchText] = useState(null)
+    const handleSearch = (event) => {
+      const newText = event.target.value
+      const updatedSearch = newText.length === 0 ? null : newText
+      setSearchText(updatedSearch)
+    }
+  
   return (
-    <PageContainer>
-      <ImageList info={imagesListInfo} />
+    <PageContainer search={searchText} searchTask={handleSearch}>
+      <ImageList 
+        initialList={initialListInfo}
+        getMoreImages={getImages}
+        filter={searchText}
+      />
     </PageContainer>
   )
 }
 
 export async function getServerSideProps() {
-  const imagesListInfo = await getImages()
+  const initialListInfo = await getImages(null, 1)
   return {
-    props: {imagesListInfo}
+    props: {initialListInfo}
   }
 }
