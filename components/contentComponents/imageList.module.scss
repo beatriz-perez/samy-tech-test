@@ -35,11 +35,16 @@
     font-size: 0.8rem;
 }
 .button{
-    cursor: pointer;
+    //cursor: pointer;
     height: 40px;
     width: 300px;
     margin-bottom: 30px;
     border: 1px solid $colorTheme3;
     border-radius: 20px;
     background-color: $colorTheme1;
+    transition: filter 0.7s;
+    &:hover {
+        filter: brightness(95%);
+        transition: filter 0.7s;
+    }
 }

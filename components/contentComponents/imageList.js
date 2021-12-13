@@ -20,7 +20,12 @@ export default function ImageList({initialList, getMoreImages, filter}) {
     // Filtrar información de imágenes según búsqueda (ya que la api to filtra en realidad)
     const filteredInfo = filter !== null 
         // Si existe una búsqueda utilizamos la lista inicial para no dar resultados repetidos
-        ? initialList.filter(i => i.title.toUpperCase().includes(filter.toUpperCase()))
+        ? initialList.filter(i => 
+            // texto incluido en el título
+            i.title.toUpperCase().includes(filter.toUpperCase()) ||
+            // texto incluido en el nombre de autorr
+            i.author.toUpperCase().includes(filter.toUpperCase())
+        )
         // Si no existe una búsqueda dejamos que elscroll continúe
         : imagesList;
 

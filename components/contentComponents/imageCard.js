@@ -8,12 +8,36 @@ import Repost from './repost'
 
 export default function ImageCard({info}) {
 
-    // Transformar formato de likes y reposts a 3 dígitos 
-    const likes = "" + info.likes_count
+    // Al no obtener datos actualizados de la API, simulamos los cambios mediante el estado
+    // Likes:
+    const [liked, setLiked] = useState(info.liked)
+    const [likes, setLikes] = useState(info.likes_count)
+    const handleLikes = () => {
+        if (liked === true) {
+            setLiked(false)
+            setLikes(prev => prev - 1)
+        } else {
+            setLiked(true)
+            setLikes(prev => prev + 1)
+        }
+    }
+    // Reposts:
+    const [reposted, setReposted] = useState(false)
     const [reposts, setReposts] = useState(0)
+    const handleReposts = () => {
+        if (reposted === true) {
+            // --------------------- !!!
+        } else {
+            setReposted(true)
+            setReposts(prev => prev + 1)
+        }
+    }
+
+    // Transformar formato de likes y reposts a 3 dígitos 
+    const likesCount = "" + likes
     const repostsCount = "" + reposts
     const template = "000"
-    const convertedLikes = template.substring(0, template.length - likes.length) + likes
+    const convertedLikes = template.substring(0, template.length - likesCount.length) + likesCount
     const convertedReposts = template.substring(0, template.length - repostsCount.length) + repostsCount
 
     return (
@@ -40,10 +64,10 @@ export default function ImageCard({info}) {
                 <p className={[styles.card__text, styles['card__text--data']].join(' ')}>
                     {convertedLikes}
                 </p>
-                <Like info={info.liked}/>
+                <Like info={liked} id={info.id} task={handleLikes} />
             </div>
             <div className={styles.card__repostsBox}>
-                <Repost info={reposts}/>
+                <Repost info={reposted} id={info.id} task={handleReposts}/>
                 <p className={[styles.card__text, styles['card__text--data']].join(' ')}>
                     {convertedReposts}
                 </p>

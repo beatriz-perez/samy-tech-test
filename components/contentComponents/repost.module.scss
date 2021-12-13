@@ -2,10 +2,10 @@
 @import '../../styles/mixins';
 
 .icon {
-    cursor: pointer;
     margin: 0.1rem 0.5rem;
     height: 30px;
     width: 30px;
+    transition: filter 0.7s;
 
     &--true {
         color: $colorTheme4;
@@ -15,5 +15,9 @@
         @include mediaSize(medium){
             color: $colorTheme1;
         }      
+    }
+    &:hover {
+        filter: brightness(85%);
+        transition: filter 0.7s;
     }
 }

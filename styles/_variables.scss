@@ -35,7 +35,7 @@ $heightFooter: 40px;
 $heightSection: calc(100vh - #{$heightHeader} - #{$heightFooter});
 
 // Content width:
-$widthGeneralContentMobile: 340px;
-$widthGeneralContentMedium: 650px;
-$widthGeneralContentLarge: 960px;
-$widthGeneralContentExtraLarge: 1270px;
+$widthGeneralContentMobile: 340px; // 1 image column + 40px on the sides
+$widthGeneralContentMedium: 610px; // 2 image column + 10px gap
+$widthGeneralContentLarge: 920px; // 3 image column + 2 10px gap
+$widthGeneralContentExtraLarge: 1230px; // 2 image column + 3 10px gap
