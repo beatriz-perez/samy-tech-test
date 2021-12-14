@@ -9,13 +9,13 @@ import { getImages } from '../services/getImages'
 
 export default function Home({initialListInfo}) {
 
-    // Search bar text
-    const [searchText, setSearchText] = useState(null)
-    const handleSearch = (event) => {
-      const newText = event.target.value
-      const updatedSearch = newText.length === 0 ? null : newText
-      setSearchText(updatedSearch)
-    }
+  // Search bar text
+  const [searchText, setSearchText] = useState(null)
+  const handleSearch = (event) => {
+    const newText = event.target.value
+    const updatedSearch = newText.length === 0 ? null : newText
+    setSearchText(updatedSearch)
+  }
   
   return (
     <PageContainer search={searchText} searchTask={handleSearch}>
