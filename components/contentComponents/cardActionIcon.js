@@ -1,5 +1,5 @@
 // Styles:
-import styles from './like.module.scss'
+import styles from './cardActionIcon.module.scss'
 
 export default function CardActionIcon({ type, info, task }) {
     return (
