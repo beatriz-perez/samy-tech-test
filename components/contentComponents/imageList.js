@@ -1,5 +1,5 @@
 // Modules:
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 // Styles:
 import styles from './imageList.module.scss'
 // Content components:
@@ -16,7 +16,17 @@ export default function ImageList({initialList, getMoreImages, filter}) {
         setPage(prev => prev + 1)
         setImagesList(prev => [...prev, ...moreImages])
     }
-      
+
+    // Referencia en el botón para sumar imágenes sin necesidad de hacer click
+    const loader = useRef(null);
+    useEffect(() => {
+        const observer = new IntersectionObserver(handleObserver);
+        loader.current && observer.observe(loader.current)
+    }, []);
+    const handleObserver = (entities) => {
+        entities[0].isIntersecting && addImages()
+    }
+    
     // Filtrar información de imágenes según búsqueda (ya que la api to filtra en realidad)
     const filteredInfo = filter !== null 
         // Si existe una búsqueda utilizamos la lista inicial para no dar resultados repetidos
@@ -52,7 +62,7 @@ export default function ImageList({initialList, getMoreImages, filter}) {
 
             {/* En caso de no estar filtrando por búsuqeda, continuamos el scroll */}
             {filter === null && (
-                <button className={styles.button} onClick={addImages}>
+                <button className={styles.button} onClick={addImages} ref={loader}>
                     load more images
                 </button>
             )}

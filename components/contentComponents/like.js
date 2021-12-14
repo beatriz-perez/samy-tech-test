@@ -1,19 +1,9 @@
 // Styles:
 import styles from './like.module.scss'
 
-export default function Like({info, id, task}) {
-
-    const like = () => {
-        // Simular acción de like mediante API mocks
-        const postUrl = `http://localhost:3100/images/:${id}/likes`
-        fetch(postUrl, { method: 'post', body: JSON.stringify({})})
-            .then((res) => { console.log(res) })
-        // Mostrar cambios a través del estado dela tarjeta:
-        task()
-    }
-
+export default function Like({ info, task }) {
     return (
-        <button className={styles.button} title="like" onClick={like} >
+        <button className={styles.button} title="like" onClick={task} >
             <svg 
                 className={[styles.icon, styles[info === true ? "icon--true": "icon--false"]].join(' ')} 
                 viewBox="0 0 30 30" 

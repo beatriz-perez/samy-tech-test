@@ -12,8 +12,6 @@ export default function SearchBar({search, searchTask}) {
             <input
                 className={styles.bar__input}
                 type="text"
-                id="header-search"
-                name="search" 
                 placeholder={search === null ? "You're looking for something?" : search}
                 onChange={searchTask}
             />

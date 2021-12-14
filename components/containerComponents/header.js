@@ -4,7 +4,6 @@ import styles from './header.module.scss'
 import SearchBar from '../contentComponents/searchBar'
 
 export default function Header({search, searchTask}) {
-
     return (
         <header className="app__header">
             <div className="app__generalSizeBox">

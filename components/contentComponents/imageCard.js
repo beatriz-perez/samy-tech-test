@@ -3,8 +3,7 @@ import { useState } from 'react'
 // Styles:
 import styles from './imageCard.module.scss'
 // Content components:
-import Like from './like'
-import Repost from './repost'
+import CardActionIcon from './cardActionIcon'
 
 export default function ImageCard({info}) {
 
@@ -13,6 +12,11 @@ export default function ImageCard({info}) {
     const [liked, setLiked] = useState(info.liked)
     const [likes, setLikes] = useState(info.likes_count)
     const handleLikes = () => {
+        // Simular acción de like mediante API mocks
+        const postUrl = `http://localhost:3100/images/:${info.id}/likes`
+        fetch(postUrl, { method: 'post', body: JSON.stringify({})})
+            .then((res) => { console.log(res) })
+        // Mostrar cambios a través del estado de la tarjeta:
         if (liked === true) {
             setLiked(false)
             setLikes(prev => prev - 1)
@@ -24,24 +28,26 @@ export default function ImageCard({info}) {
     // Reposts:
     const [reposted, setReposted] = useState(false)
     const [reposts, setReposts] = useState(0)
+    // Simular acción de repost mediante estado ya que esta información no se da en la API
     const handleReposts = () => {
         if (reposted === true) {
-            // --------------------- !!!
+            // ---------------------------------------------------------- !!!
         } else {
             setReposted(true)
             setReposts(prev => prev + 1)
         }
     }
 
-    // Transformar formato de likes y reposts a 3 dígitos 
-    const likesCount = "" + likes
-    const repostsCount = "" + reposts
-    const template = "000"
-    const convertedLikes = template.substring(0, template.length - likesCount.length) + likesCount
-    const convertedReposts = template.substring(0, template.length - repostsCount.length) + repostsCount
+    // Transformar formato de números (likes y reposts) a 3 dígitos
+    const transformNumber = (n) => {
+        const string = "" + n
+        const template = "000"
+        return(template.substring(0, template.length - string.length) + string)
+    }
 
     return (
         <div className={styles.card}>
+
             {/* Imagen */}
             <img
                 className={styles.card__image} 
@@ -62,14 +68,14 @@ export default function ImageCard({info}) {
             </div>
             <div className={styles.card__likesBox}>
                 <p className={[styles.card__text, styles['card__text--data']].join(' ')}>
-                    {convertedLikes}
+                    {transformNumber(likes)}
                 </p>
-                <Like info={liked} id={info.id} task={handleLikes} />
+                <CardActionIcon type='like' info={liked} task={handleLikes} />
             </div>
             <div className={styles.card__repostsBox}>
-                <Repost info={reposted} id={info.id} task={handleReposts}/>
+                <CardActionIcon type='repost' info={reposted} task={handleReposts}/>
                 <p className={[styles.card__text, styles['card__text--data']].join(' ')}>
-                    {convertedReposts}
+                    {transformNumber(reposts)}
                 </p>
             </div>
             {/* Precio de imagen,renderizado sólo en caso de existir */}

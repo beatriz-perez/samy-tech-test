@@ -1,16 +1,9 @@
 // Styles:
 import styles from './repost.module.scss'
 
-export default function Repost({info, id, task}) {
-
-    const repost = () => {
-        // Simular acción de repost únicamente mediante estado 
-        // ya que esta información no sedaen la API
-        task()        
-    }
-
+export default function Repost({ info, task }) {
     return (
-        <button className={styles.button} title="repost" onClick={repost} >
+        <button className={styles.button} title="repost" onClick={task} >
             <svg 
                 className={[styles.icon, styles[info > 0 ? "icon--true": "icon--false"]].join(' ')} 
                 viewBox="0 0 30 30" 
