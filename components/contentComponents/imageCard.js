@@ -4,6 +4,8 @@ import { useState } from 'react'
 import styles from './imageCard.module.scss'
 // Content components:
 import CardActionIcon from './cardActionIcon'
+// Services:
+import { postLikes } from '../../services/postLikes'
 
 export default function ImageCard({info}) {
 
@@ -11,12 +13,11 @@ export default function ImageCard({info}) {
     // Likes:
     const [liked, setLiked] = useState(info.liked)
     const [likes, setLikes] = useState(info.likes_count)
-    const handleLikes = () => {
+    const handleLikes = async () => {
         // Simular acción de like mediante API mocks
-        const postUrl = `http://localhost:3100/images/:${info.id}/likes`
-        fetch(postUrl, { method: 'post', body: JSON.stringify({})})
-            .then((res) => { console.log(res) })
-        // Mostrar cambios a través del estado de la tarjeta:
+        const apiResponse = await postLikes(info.id)
+        console.log(apiResponse.ok)
+        // Simula cambio a través del estado de la tarjeta (ya que la api no se actualiza):
         if (liked === true) {
             setLiked(false)
             setLikes(prev => prev - 1)
@@ -28,7 +29,7 @@ export default function ImageCard({info}) {
     // Reposts:
     const [reposted, setReposted] = useState(false)
     const [reposts, setReposts] = useState(0)
-    // Simular acción de repost mediante estado ya que esta información no se da en la API
+    // Simular acción de repost mediante estado - esta información no se da en la API
     const handleReposts = () => {
         if (reposted === true) {
             // ---------------------------------------------------------- !!!
