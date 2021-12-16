@@ -3,7 +3,7 @@ const baseUrl = 'http://localhost:3100/images'
 
 // COMPLETE URL + QUERY
 export const postUrl = (id) => {
-  const completeUrl = `${baseUrl}/:${id}/likes`
+  const completeUrl = `${baseUrl}/${id}/likes`
   return completeUrl
 }
 

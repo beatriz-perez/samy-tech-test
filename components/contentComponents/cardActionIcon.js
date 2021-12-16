@@ -2,10 +2,22 @@
 import styles from './cardActionIcon.module.scss'
 
 export default function CardActionIcon({ type, info, task }) {
+
+    const buttonStyle = () => {
+        let style = ''
+        type === 'like' &&  (
+            style = info.liked === true ? "icon--true" : "icon--false"
+        )
+        type === 'repost' &&  (
+            style = info.reposted === true ? "icon--true" : "icon--false"
+        )
+        return style
+    }
+    
     return (
-        <button className={styles.button} title="like" onClick={task} >
+        <button className={styles.button} title={type} onClick={() => task(info)} >
             <svg 
-                className={[styles.icon, styles[info === true ? "icon--true": "icon--false"]].join(' ')} 
+                className={[styles.icon, styles[buttonStyle()]].join(' ')} 
                 viewBox="0 0 30 30" 
                 fill="none" 
                 xmlns="http://www.w3.org/2000/svg"

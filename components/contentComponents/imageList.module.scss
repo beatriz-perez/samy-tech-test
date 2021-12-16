@@ -13,8 +13,6 @@
     height: auto;
     width: auto;
     margin: 30px auto;
-
-
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     grid-template-rows: repeat(1, auto);
@@ -35,7 +33,6 @@
     font-size: 0.8rem;
 }
 .button{
-    //cursor: pointer;
     height: 40px;
     width: 300px;
     margin-bottom: 30px;

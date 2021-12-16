@@ -1,28 +1,34 @@
 // Modules:
-import { useState } from 'react'
+import { useUpdatedList } from '../hooks/useUpdatedList'
+import { useSearch } from '../hooks/useSearch'
+import { useDialog } from '../hooks/useDialog'
+// Services:
+import { getImages } from '../services/getImages'
 // Layout:
 import PageContainer from '../layouts/PageContainer'
 // Content components:
 import ImageList from '../components/contentComponents/imageList'
-// Services:
-import { getImages } from '../services/getImages'
 
 export default function Home({initialListInfo}) {
+  const [searchText, handleSearch] = useSearch()
+  const [updatedList, like, repost, scrollImages, loader, addImages] = useUpdatedList(initialListInfo, searchText)
+  const [dialogMessage, handleDialog] = useDialog()//------------
 
-  // Search bar text
-  const [searchText, setSearchText] = useState(null)
-  const handleSearch = (event) => {
-    const newText = event.target.value
-    const updatedSearch = newText.length === 0 ? null : newText
-    setSearchText(updatedSearch)
-  }
-  
   return (
-    <PageContainer search={searchText} searchTask={handleSearch}>
+    <PageContainer 
+      search={searchText} 
+      searchTask={handleSearch} 
+      dialogMessage={dialogMessage}
+    >
       <ImageList 
-        initialList={initialListInfo}
-        getMoreImages={getImages}
-        filter={searchText}
+        initialList={updatedList} 
+        filter={searchText} 
+        like={like}
+        repost={repost}
+        scrollImages={scrollImages}
+        loader={loader}
+        addImages={addImages}
+        showDialog={handleDialog}
       />
     </PageContainer>
   )

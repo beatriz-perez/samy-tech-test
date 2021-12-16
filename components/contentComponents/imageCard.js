@@ -1,44 +1,12 @@
 // Modules:
-import { useState } from 'react'
+import { useRouter } from 'next/router'
 // Styles:
 import styles from './imageCard.module.scss'
 // Content components:
 import CardActionIcon from './cardActionIcon'
-// Services:
-import { postLikes } from '../../services/postLikes'
 
-export default function ImageCard({info}) {
-
-    // Al no obtener datos actualizados de la API, simulamos los cambios mediante el estado
-    // Likes:
-    const [liked, setLiked] = useState(info.liked)
-    const [likes, setLikes] = useState(info.likes_count)
-    const handleLikes = async () => {
-        // Simular acción de like mediante API mocks
-        const apiResponse = await postLikes(info.id)
-        console.log(apiResponse.ok)
-        // Simula cambio a través del estado de la tarjeta (ya que la api no se actualiza):
-        if (liked === true) {
-            setLiked(false)
-            setLikes(prev => prev - 1)
-        } else {
-            setLiked(true)
-            setLikes(prev => prev + 1)
-        }
-    }
-    // Reposts:
-    const [reposted, setReposted] = useState(false)
-    const [reposts, setReposts] = useState(0)
-    // Simular acción de repost mediante estado - esta información no se da en la API
-    const handleReposts = () => {
-        if (reposted === true) {
-            // ---------------------------------------------------------- !!!
-        } else {
-            setReposted(true)
-            setReposts(prev => prev + 1)
-        }
-    }
-
+export default function ImageCard({info, like, repost, showDialog}) {
+    const router = useRouter()
     // Transformar formato de números (likes y reposts) a 3 dígitos
     const transformNumber = (n) => {
         const string = "" + n
@@ -55,31 +23,43 @@ export default function ImageCard({info}) {
                 src={info.main_attachment.small}
                 alt={info.title}
             />
+
             {/* Información de imagen */}
             <div className={styles.card__infoBox}>
-                <p className={[styles.card__text, styles['card__text--title']].join(' ')}>
+                <p 
+                    className={[styles.card__text, styles['card__text--title']].join(' ')}
+                    onClick={() => router.push(`/image/${info.id}`)}
+                >
                     {info.title}
                 </p>
-                <p className={[styles.card__text, styles['card__text--author']].join(' ')}>
+                <p 
+                    className={[styles.card__text, styles['card__text--author']].join(' ')}
+                    onClick={() => router.push(`/author/${info.author.toLowerCase().replace(/ /g, "")}`)}
+                >
                     <span className={[styles.card__text, styles['card__text--secondary']].join(' ')}>
                         by
                     </span>
                     {' '}{info.author}
                 </p>
             </div>
+
+            {/* Likes */}
             <div className={styles.card__likesBox}>
                 <p className={[styles.card__text, styles['card__text--data']].join(' ')}>
-                    {transformNumber(likes)}
+                    {transformNumber(info.likes_count)}
                 </p>
-                <CardActionIcon type='like' info={liked} task={handleLikes} />
+                <CardActionIcon type='like' info={info} task={like} />
             </div>
+
+            {/* Reposts */}
             <div className={styles.card__repostsBox}>
-                <CardActionIcon type='repost' info={reposted} task={handleReposts}/>
+                <CardActionIcon type='repost' info={info} task={repost}/>
                 <p className={[styles.card__text, styles['card__text--data']].join(' ')}>
-                    {transformNumber(reposts)}
+                    {transformNumber(info.reposts_count)}
                 </p>
             </div>
-            {/* Precio de imagen,renderizado sólo en caso de existir */}
+
+            {/* Precio de imagen, en caso de existir */}
             {info.price && (
                 <>
                     <div className={styles.card__priceBox}></div>
@@ -95,7 +75,8 @@ export default function ImageCard({info}) {
                     </div>
                 </>            
             )}
-            {/* Degradado para oscurecer al hacer hover */}
+
+            {/* Degradado en hover */}
             <div className={styles.card__gradientBox}></div>
 
         </div>

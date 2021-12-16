@@ -1,11 +1,11 @@
 // Modules:
 import Head from 'next/head';
 // Components:
-import Header from '../components/containerComponents/header';
-import Main from '../components/containerComponents/main'
-import Footer from '../components/containerComponents/footer';
+import Header from '../components/layoutComponents/header';
+import Main from '../components/layoutComponents/main'
+import Footer from '../components/layoutComponents/footer';
 
-export default function PageContainer({children, search, searchTask}) {
+export default function PageContainer({children, search, searchTask, dialogMessage}) {
 
     return (
         <div className="app">
@@ -17,7 +17,7 @@ export default function PageContainer({children, search, searchTask}) {
             </Head>
 
             <Header search={search} searchTask={searchTask}/>
-            <Main>
+            <Main dialogMessage={dialogMessage}>
                 {children}
             </Main>
             <Footer/>
