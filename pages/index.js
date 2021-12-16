@@ -12,7 +12,7 @@ import ImageList from '../components/contentComponents/imageList'
 export default function Home({initialListInfo}) {
   const [searchText, handleSearch] = useSearch()
   const [updatedList, like, repost, scrollImages, loader, addImages] = useUpdatedList(initialListInfo, searchText)
-  const [dialogMessage, handleDialog] = useDialog()//------------
+  const [dialogMessage, handleDialog] = useDialog()
 
   return (
     <PageContainer 

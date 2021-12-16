@@ -4,7 +4,7 @@ import styles from './imageList.module.scss'
 import ImageCard from './imageCard'  
 
 export default function ImageList(props) {
-    const {initialList, filter, like, repost, scrollImages, loader, addImages, showDialog} = props
+    const {filter, like, repost, scrollImages, loader, addImages, showDialog} = props
     return (
         <div className={styles.listBox}>
             {scrollImages.length === 0 

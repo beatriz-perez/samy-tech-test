@@ -94,7 +94,7 @@ export const useUpdatedList = (initialListInfo, filter) => {
     // FILTRO POR BÚSQUEDA (ya que la api to filtra en realidad):
     const scrollImages = filter && filter !== null 
         // Si existe una búsqueda tomamos la lista inicial para no dar resultados repetidos
-        ? initialList.filter(i => 
+        ? initialListInfo.filter(i => 
             i.title.toUpperCase().includes(filter.toUpperCase()) ||
             i.author.toUpperCase().includes(filter.toUpperCase())
         )

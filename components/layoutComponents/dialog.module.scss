@@ -3,42 +3,24 @@
 .dialog{
     position: absolute;
     z-index: 100;
-    overflow: hidden;
-    height: $heightSection;
+    height: 60px;
     width: 100vw;
-    background: linear-gradient($colorTheme3, $colorTransparent);
+    left:0;
+    background-color: $colorTheme3;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    display:grid;
+    place-items: center;
     &--on {
-        opacity: 1;
-        transition: opacity 0.7s;
-    }
+        top: 0;
+        transition: top 0.7s;
+    }    
     &--off {
-        opacity: 0;
-        transition: opacity 0.7s;
-    }
-    &--hidden {
-        display: none;
-    }
-    &__box {
-        position: absolute;
-        z-index: 110;
-        height: 60px;
-        width: 300px;
-        left: calc(50vw - 150px);
-        background-color: $colorTheme2;
-        border-radius: 15px;
-        display:grid;
-        place-items: center;
-        &--on {
-            top: calc($heightSection/2 - 30px);
-            transition: top 0.7s;
-        }    
-        &--off {
-            top: -100px;
-            transition: top 0.7s;
-        }    
-    }
+        top: -100px;
+        transition: top 0.7s;
+    } 
     &__text {
         font-size: 0.9rem;
         color: $colorMiddle;
-    }
+    }  
 }

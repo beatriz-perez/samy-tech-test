@@ -1,7 +1,7 @@
 // Styles:
 import styles from './cardActionIcon.module.scss'
 
-export default function CardActionIcon({ type, info, task }) {
+export default function CardActionIcon({ type, info, task, showDialog, dialogMessage }) {
 
     const buttonStyle = () => {
         let style = ''
@@ -15,7 +15,14 @@ export default function CardActionIcon({ type, info, task }) {
     }
     
     return (
-        <button className={styles.button} title={type} onClick={() => task(info)} >
+        <button 
+            className={styles.button} 
+            title={type} 
+            onClick={() => {
+                task(info)
+                showDialog(dialogMessage)
+            }} 
+        >
             <svg 
                 className={[styles.icon, styles[buttonStyle()]].join(' ')} 
                 viewBox="0 0 30 30" 

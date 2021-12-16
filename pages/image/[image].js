@@ -1,3 +1,5 @@
+// Modules:
+import { useDialog } from '../../hooks/useDialog'
 // Layout:
 import PageContainer from '../../layouts/PageContainer'
 // Services:
@@ -6,9 +8,12 @@ import { getImages } from '../../services/getImages'
 import ImageFile from '../../components/contentComponents/imageFile'
 
 export default function ImagePage({imageInfo}) {  
+
+  const [dialogMessage, handleDialog] = useDialog()
+
   return (
-    <PageContainer>
-        <ImageFile info={imageInfo} />
+    <PageContainer dialogMessage={dialogMessage}>
+        <ImageFile info={imageInfo} showDialog={handleDialog}/>
     </PageContainer>
   )
 }

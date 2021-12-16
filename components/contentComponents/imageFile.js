@@ -3,8 +3,9 @@ import styles from './imageFile.module.scss'
 // Modules:
 import { useRouter } from 'next/router'
 
-export default function ImageFile({info}) {
+export default function ImageFile({info, showDialog}) {
     const router = useRouter()
+    const dialogMessage = `"${info.title}" was added to your shopping cart`
     return (
         <div className={styles.container}>
             {/* Title */}
@@ -32,7 +33,7 @@ export default function ImageFile({info}) {
                 alt={info.title}
             />
             {/* Buy button */}
-            <button className={styles.button} > {/* --------------- ACCION !!! */}
+            <button className={styles.button} onClick={() => { showDialog(dialogMessage)}} >
                 <img
                     className={styles.button__icon} 
                     src="/icons/arrowBack.svg"

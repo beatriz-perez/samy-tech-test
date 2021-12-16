@@ -1,9 +1,13 @@
+
+// Modules:
+import { useRouter } from 'next/router'
 // Styles:
 import styles from './authorProfile.module.scss'
 // Content components:
 import ImageList from './imageList'
 
 export default function AuthorProfile({info}) {
+    const router = useRouter()
     return (
         <div className={styles.container}>
             {/* Name */}
@@ -36,7 +40,26 @@ export default function AuthorProfile({info}) {
                 <p className={[styles.text, styles['text--infoTitle']].join(' ')}>
                     {info.name}'s pictures:
                 </p>
-                <ImageList initialList={info.images}/>
+                <ul className={styles.list}>
+                    {info.images.map((item, index) => ( 
+                            <li 
+                                key={index + 1} 
+                                className={styles.list__item}
+                                onClick={() => router.push(`/image/${item.id}`)}
+                            >
+                                <img
+                                    className={styles.image}
+                                    src={item.main_attachment.small}
+                                    alt={index}
+                                />
+                                <p 
+                                    className={[styles.text, styles['text--title']].join(' ')}
+                                >
+                                    {item.title}
+                                </p>
+                            </li>
+                        ))}                
+                        </ul>
             </div>
 
         </div>

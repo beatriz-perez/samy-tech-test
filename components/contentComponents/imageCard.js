@@ -48,12 +48,22 @@ export default function ImageCard({info, like, repost, showDialog}) {
                 <p className={[styles.card__text, styles['card__text--data']].join(' ')}>
                     {transformNumber(info.likes_count)}
                 </p>
-                <CardActionIcon type='like' info={info} task={like} />
+                <CardActionIcon type='like' info={info} task={like} showDialog={showDialog} />
             </div>
 
             {/* Reposts */}
             <div className={styles.card__repostsBox}>
-                <CardActionIcon type='repost' info={info} task={repost}/>
+                <CardActionIcon 
+                    type='repost' 
+                    info={info} 
+                    task={repost} 
+                    showDialog={showDialog} 
+                    dialogMessage={
+                        info.reposted && (
+                            info.reposted === false ? 'post added to your wall' : 'post removed from your wall'
+                        )
+                    }
+                />
                 <p className={[styles.card__text, styles['card__text--data']].join(' ')}>
                     {transformNumber(info.reposts_count)}
                 </p>
