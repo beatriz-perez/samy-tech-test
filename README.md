@@ -20,7 +20,7 @@ Se puede visitar la demo de la SPA en la url:
 
 2. Para arrancar la aplicación, que se mostrará en `http://localhost:3000/`:
 
-    `npm run dev``
+    `npm run dev`
 
 3. La aplicación se serviría de imágenes a través de una API que no está desarrollada aún, por lo que podemos optar por suplirla con el repositorio de este enlace:
 
@@ -28,7 +28,7 @@ Se puede visitar la demo de la SPA en la url:
 
 arrancando su funcionamiento en `http://localhost:3100/images` desde terminal con:
 
-    `npm run mocks``
+    `npm run mocks`
 
 * Ya que la API no devuelve resultados actualizados al darse cambios en las publicaciones, la app se apoya en LocalStorage para simularlos.
 * A fin de poder desplegar la demo se ha incluido un archivo JSON que permite utilizar la app sin realizar este paso. Bastaría comentar el códico correspondiente en `services/getImages.js` para que la app no utilice este archivo como fuente.
